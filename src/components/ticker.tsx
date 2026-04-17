@@ -12,7 +12,7 @@ export function Ticker() {
   return (
     <div
       className="text-white py-2.5 overflow-hidden relative z-30"
-      style={{ background: "var(--navy)", marginTop: 76 }}
+      style={{ background: "var(--navy)", marginTop: 132 }}
     >
       <div className="max-w-[1240px] mx-auto px-6 flex items-center gap-0">
         <div
