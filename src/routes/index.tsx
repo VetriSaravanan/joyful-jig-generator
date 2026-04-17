@@ -1,26 +1,45 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { Navbar } from "@/components/navbar";
+import { Ticker } from "@/components/ticker";
+import {
+  Hero, Why, About, Programs, Playground, Gallery, Blogs, Announcements, ReachUs, Footer, FloatingButtons,
+} from "@/components/sections";
 
 export const Route = createFileRoute("/")({
-  component: Index,
+  head: () => ({
+    meta: [
+      { title: "Payitragam Preschool — Nellaiappar Kanthimathi | Tirunelveli" },
+      {
+        name: "description",
+        content:
+          "Nellaiappar Kanthimathi Payitragam — Multiple Intelligence Preschool in Tirunelveli, Tamilnadu. Montessori, Reggio Emilia & Play Way approach. 500+ happy students.",
+      },
+      { name: "keywords", content: "Preschool Tirunelveli, Nursery Tirunelveli, Montessori, Payitragam, Early Childhood Education, Junior KG, Senior KG" },
+      { property: "og:title", content: "Payitragam — #1 Preschool in Tirunelveli" },
+      { property: "og:description", content: "Multiple Intelligence-based learning. Montessori, Reggio Emilia & Play Way. Enroll your little one today!" },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
+  }),
+  component: HomePage,
 });
 
-// IMPORTANT: Replace this placeholder. For sites with multiple pages (About, Services, Contact, etc.),
-// create separate route files (about.tsx, services.tsx, contact.tsx) — don't put all pages in this file.
-function PlaceholderIndex() {
+function HomePage() {
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
+    <main>
+      <Navbar />
+      <Ticker />
+      <Hero />
+      <Why />
+      <About />
+      <Programs />
+      <Playground />
+      <Gallery />
+      <Blogs />
+      <Announcements />
+      <ReachUs />
+      <Footer />
+      <FloatingButtons />
+    </main>
   );
-}
-
-function Index() {
-  return <PlaceholderIndex />;
 }
