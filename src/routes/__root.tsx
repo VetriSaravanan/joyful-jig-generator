@@ -1,4 +1,5 @@
 import { Outlet, Link, createRootRoute, HeadContent, Scripts } from "@tanstack/react-router";
+import { Toaster } from "@/components/ui/sonner";
 
 import appCss from "../styles.css?url";
 
@@ -29,16 +30,8 @@ export const Route = createRootRoute({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Playful Pixel Palace is a fun, interactive website for a preschool, featuring vibrant SVG decorations." },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Playful Pixel Palace is a fun, interactive website for a preschool, featuring vibrant SVG decorations." },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary" },
-      { name: "twitter:site", content: "@Lovable" },
-      { name: "twitter:title", content: "Lovable App" },
-      { name: "twitter:description", content: "Playful Pixel Palace is a fun, interactive website for a preschool, featuring vibrant SVG decorations." },
+      { title: "Payitragam Preschool — Tirunelveli" },
+      { name: "description", content: "Multiple Intelligence Preschool in Tirunelveli — Montessori, Reggio Emilia & Play Way." },
     ],
     links: [
       {
@@ -67,5 +60,10 @@ function RootShell({ children }: { children: React.ReactNode }) {
 }
 
 function RootComponent() {
-  return <Outlet />;
+  return (
+    <>
+      <Outlet />
+      <Toaster richColors position="top-right" />
+    </>
+  );
 }
