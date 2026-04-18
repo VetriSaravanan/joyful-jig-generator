@@ -1,7 +1,17 @@
 import { createClient } from "@supabase/supabase-js";
 
-// External Supabase project (publishable key only — never paste secret keys client-side)
-const SUPABASE_URL = "https://YOUR-PROJECT-REF.supabase.co";
+/**
+ * EXTERNAL SUPABASE CONFIG
+ * -------------------------
+ * 1. Go to your Supabase dashboard → Project Settings → API
+ * 2. Copy the "Project URL" and paste it below as SUPABASE_URL
+ * 3. The publishable key below is the one you provided
+ *
+ * NEVER paste the SECRET key here — it bypasses RLS and would be exposed
+ * to every visitor in the browser bundle. The secret key you shared in
+ * chat should be ROTATED in your Supabase dashboard immediately.
+ */
+const SUPABASE_URL = "https://YOUR-PROJECT-REF.supabase.co"; // ← REPLACE THIS
 const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_gEyZpzyR2Pi2XF_UTiMzog_04IcJaAC";
 
 export const supabase = createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY, {
@@ -12,7 +22,9 @@ export const supabase = createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY, {
   },
 });
 
-// Storage bucket names (must match buckets created in Supabase Storage)
+export const SUPABASE_CONFIGURED =
+  !SUPABASE_URL.includes("YOUR-PROJECT-REF");
+
 export const BUCKETS = {
   logos: "logos",
   gallery: "gallery",
