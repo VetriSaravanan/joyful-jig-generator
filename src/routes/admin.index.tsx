@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { supabase } from "@/lib/supabase";
 import { Image, FileText, Inbox, Megaphone, Users, MapPin } from "lucide-react";
+import { SetupBanner } from "@/components/setup-banner";
 
 export const Route = createFileRoute("/admin/")({
   component: DashboardHome,
@@ -13,26 +14,30 @@ function DashboardHome() {
   });
 
   useEffect(() => {
+    let cancelled = false;
+    const safeCount = async (table: string, filter?: { col: string; val: string | boolean }) => {
+      let q = supabase.from(table).select("id", { count: "exact", head: true });
+      if (filter) q = q.eq(filter.col, filter.val as never);
+      const { count, error } = await q;
+      if (error) return 0;
+      return count ?? 0;
+    };
+
     (async () => {
-      const counts = await Promise.all([
-        supabase.from("enquiries").select("id", { count: "exact", head: true }),
-        supabase.from("enquiries").select("id", { count: "exact", head: true }).eq("is_read", false),
-        supabase.from("gallery_images").select("id", { count: "exact", head: true }),
-        supabase.from("blogs").select("id", { count: "exact", head: true }),
-        supabase.from("announcements").select("id", { count: "exact", head: true }),
-        supabase.from("team_members").select("id", { count: "exact", head: true }),
-        supabase.from("branches").select("id", { count: "exact", head: true }),
+      const [enquiries, unread, gallery, blogs, announcements, team, branches] = await Promise.all([
+        safeCount("enquiries"),
+        safeCount("enquiries", { col: "is_read", val: false }),
+        safeCount("gallery_images"),
+        safeCount("blogs"),
+        safeCount("announcements"),
+        safeCount("team_members"),
+        safeCount("branches"),
       ]);
-      setStats({
-        enquiries: counts[0].count ?? 0,
-        unread: counts[1].count ?? 0,
-        gallery: counts[2].count ?? 0,
-        blogs: counts[3].count ?? 0,
-        announcements: counts[4].count ?? 0,
-        team: counts[5].count ?? 0,
-        branches: counts[6].count ?? 0,
-      });
+      if (cancelled) return;
+      setStats({ enquiries, unread, gallery, blogs, announcements, team, branches });
     })();
+
+    return () => { cancelled = true; };
   }, []);
 
   const cards = [
@@ -47,6 +52,8 @@ function DashboardHome() {
 
   return (
     <div className="space-y-6">
+      <SetupBanner />
+
       <div>
         <h1 className="text-2xl font-bold">Dashboard</h1>
         <p className="text-muted-foreground text-sm">Welcome back. Here's what's happening at Payitragam.</p>

@@ -3,6 +3,7 @@ import { Link, Outlet, createFileRoute, useLocation, useNavigate } from "@tansta
 import { supabase, SUPABASE_CONFIGURED } from "@/lib/supabase";
 import type { Session } from "@supabase/supabase-js";
 import { toast } from "sonner";
+import { SetupBanner } from "@/components/setup-banner";
 import {
   LayoutDashboard, Settings, Home, Info, Image as ImageIcon, FileText, Megaphone,
   Inbox, MapPin, Users, BookOpen, LogOut, Menu, X, AlertTriangle,
@@ -145,6 +146,7 @@ function AdminLayout() {
           </Link>
         </header>
         <main className="flex-1 p-4 lg:p-6 overflow-auto">
+          {location.pathname !== "/admin" && <SetupBanner />}
           <Outlet />
         </main>
       </div>
