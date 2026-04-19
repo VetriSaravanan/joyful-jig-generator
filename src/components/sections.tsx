@@ -39,15 +39,14 @@ export function Hero() {
       id="home"
       className="relative overflow-hidden flex items-center"
       style={{
-        minHeight: "100vh",
+        minHeight: "auto",
         background: "linear-gradient(135deg, oklch(0.95 0.04 230) 0%, oklch(0.97 0.03 70) 40%, oklch(0.96 0.04 320) 100%)",
-        paddingTop: 20,
       }}
     >
       <SectionDeco variant="hero" />
 
-      <div className="relative z-10 max-w-[1240px] mx-auto px-6 w-full">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center pt-20 pb-16">
+      <div className="relative z-10 max-w-[1240px] mx-auto px-4 sm:px-6 w-full">
+        <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center pt-10 pb-12 lg:pt-20 lg:pb-16">
           {/* Text */}
           <div>
             <div
@@ -115,37 +114,37 @@ export function Hero() {
             <div className="w-full max-w-[480px] relative">
               {/* Floating cards */}
               <div
-                className="absolute z-20 animate-float"
+                className="absolute z-20 animate-float hidden md:flex"
                 style={{
                   top: -16, left: -30,
                   background: "#fff", borderRadius: 14, border: "2px solid var(--border)",
                   padding: "10px 16px", boxShadow: "0 8px 24px oklch(0 0 0 / .12)",
                   fontSize: 13, fontWeight: 700, fontFamily: "var(--font-play)",
-                  color: "var(--teal)", display: "flex", alignItems: "center", gap: 7, whiteSpace: "nowrap",
+                  color: "var(--teal)", alignItems: "center", gap: 7, whiteSpace: "nowrap",
                 }}
               >
                 🌿 Reggio Emilia
               </div>
               <div
-                className="absolute z-20 animate-float-r"
+                className="absolute z-20 animate-float-r hidden md:flex"
                 style={{
                   bottom: -16, right: -30,
                   background: "#fff", borderRadius: 14, border: "2px solid var(--border)",
                   padding: "10px 16px", boxShadow: "0 8px 24px oklch(0 0 0 / .12)",
                   fontSize: 13, fontWeight: 700, fontFamily: "var(--font-play)",
-                  color: "var(--accent)", display: "flex", alignItems: "center", gap: 7, whiteSpace: "nowrap",
+                  color: "var(--accent)", alignItems: "center", gap: 7, whiteSpace: "nowrap",
                 }}
               >
                 ❤️ Montessori
               </div>
               <div
-                className="absolute z-20 animate-pop"
+                className="absolute z-20 animate-pop hidden md:flex"
                 style={{
                   top: "35%", right: -50,
                   background: "#fff", borderRadius: 14, border: "2px solid var(--border)",
                   padding: "10px 16px", boxShadow: "0 8px 24px oklch(0 0 0 / .12)",
                   fontSize: 13, fontWeight: 700, fontFamily: "var(--font-play)",
-                  color: "var(--primary)", display: "flex", alignItems: "center", gap: 7, whiteSpace: "nowrap",
+                  color: "var(--primary)", alignItems: "center", gap: 7, whiteSpace: "nowrap",
                 }}
               >
                 ⭐ Play Way
@@ -1084,8 +1083,15 @@ export function Footer() {
             <ContactRow icon="🕘" text="Mon–Fri 9am–5pm | Sat 9am–1pm" />
           </div>
         </div>
-        <div className="pt-5 text-center text-[13px]" style={{ borderTop: "1px solid oklch(1 0 0 / .12)", color: "oklch(1 0 0 / .6)" }}>
-          © 2025 <b style={{ color: "#fff" }}>Nellaiappar Kanthimathi Payitragam</b>. All rights reserved. Made with ❤️ for little learners in Tirunelveli.
+        <div className="pt-5 text-center text-[13px] flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-5" style={{ borderTop: "1px solid oklch(1 0 0 / .12)", color: "oklch(1 0 0 / .6)" }}>
+          <span>© 2025 <b style={{ color: "#fff" }}>Nellaiappar Kanthimathi Payitragam</b>. Made with ❤️ in Tirunelveli.</span>
+          <a
+            href="/admin"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[12px] font-bold transition-transform hover:-translate-y-0.5"
+            style={{ background: "var(--secondary)", color: "var(--navy)", fontFamily: "var(--font-play)" }}
+          >
+            🔐 Admin Login
+          </a>
         </div>
       </div>
     </footer>

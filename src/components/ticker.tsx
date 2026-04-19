@@ -11,8 +11,8 @@ export function Ticker() {
   const doubled = [...items, ...items];
   return (
     <div
-      className="text-white py-2.5 overflow-hidden relative z-30"
-      style={{ background: "var(--navy)", marginTop: 132 }}
+      className="text-white py-2.5 overflow-hidden relative z-30 mt-[80px] lg:mt-[132px]"
+      style={{ background: "var(--navy)" }}
     >
       <div className="max-w-[1240px] mx-auto px-6 flex items-center gap-0">
         <div
