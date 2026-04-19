@@ -24,8 +24,9 @@ function AboutPage() {
     if (error) { toast.error(error.message); return; }
     if (rows && rows.length) setData(rows[0] as About);
     else {
-      const { data: ins } = await supabase.from("about_content")
-        .insert({ who_we_are_text: "", mission: "", vision: "" }).select().single();
+      const { data: ins, error: insErr } = await supabase.from("about_content")
+        .insert({ who_we_are_text: "", mission: "", vision: "" }).select().maybeSingle();
+      if (insErr) { toast.error(insErr.message); return; }
       if (ins) setData(ins as About);
     }
   }
