@@ -114,37 +114,37 @@ export function Hero() {
             <div className="w-full max-w-[480px] relative">
               {/* Floating cards */}
               <div
-                className="absolute z-20 animate-float"
+                className="absolute z-20 animate-float hidden md:flex"
                 style={{
                   top: -16, left: -30,
                   background: "#fff", borderRadius: 14, border: "2px solid var(--border)",
                   padding: "10px 16px", boxShadow: "0 8px 24px oklch(0 0 0 / .12)",
                   fontSize: 13, fontWeight: 700, fontFamily: "var(--font-play)",
-                  color: "var(--teal)", display: "flex", alignItems: "center", gap: 7, whiteSpace: "nowrap",
+                  color: "var(--teal)", alignItems: "center", gap: 7, whiteSpace: "nowrap",
                 }}
               >
                 🌿 Reggio Emilia
               </div>
               <div
-                className="absolute z-20 animate-float-r"
+                className="absolute z-20 animate-float-r hidden md:flex"
                 style={{
                   bottom: -16, right: -30,
                   background: "#fff", borderRadius: 14, border: "2px solid var(--border)",
                   padding: "10px 16px", boxShadow: "0 8px 24px oklch(0 0 0 / .12)",
                   fontSize: 13, fontWeight: 700, fontFamily: "var(--font-play)",
-                  color: "var(--accent)", display: "flex", alignItems: "center", gap: 7, whiteSpace: "nowrap",
+                  color: "var(--accent)", alignItems: "center", gap: 7, whiteSpace: "nowrap",
                 }}
               >
                 ❤️ Montessori
               </div>
               <div
-                className="absolute z-20 animate-pop"
+                className="absolute z-20 animate-pop hidden md:flex"
                 style={{
                   top: "35%", right: -50,
                   background: "#fff", borderRadius: 14, border: "2px solid var(--border)",
                   padding: "10px 16px", boxShadow: "0 8px 24px oklch(0 0 0 / .12)",
                   fontSize: 13, fontWeight: 700, fontFamily: "var(--font-play)",
-                  color: "var(--primary)", display: "flex", alignItems: "center", gap: 7, whiteSpace: "nowrap",
+                  color: "var(--primary)", alignItems: "center", gap: 7, whiteSpace: "nowrap",
                 }}
               >
                 ⭐ Play Way
