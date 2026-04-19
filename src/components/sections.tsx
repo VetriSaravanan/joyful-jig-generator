@@ -39,15 +39,14 @@ export function Hero() {
       id="home"
       className="relative overflow-hidden flex items-center"
       style={{
-        minHeight: "100vh",
+        minHeight: "auto",
         background: "linear-gradient(135deg, oklch(0.95 0.04 230) 0%, oklch(0.97 0.03 70) 40%, oklch(0.96 0.04 320) 100%)",
-        paddingTop: 20,
       }}
     >
       <SectionDeco variant="hero" />
 
-      <div className="relative z-10 max-w-[1240px] mx-auto px-6 w-full">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center pt-20 pb-16">
+      <div className="relative z-10 max-w-[1240px] mx-auto px-4 sm:px-6 w-full">
+        <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center pt-10 pb-12 lg:pt-20 lg:pb-16">
           {/* Text */}
           <div>
             <div
