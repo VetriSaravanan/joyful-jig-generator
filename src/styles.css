@@ -249,10 +249,14 @@
 }
 .toy-card:hover::after { left: 200%; }
 
-/* Hide deco on mobile to keep it clean */
-.deco-layer { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
-@media (max-width: 640px) {
-  .deco-mobile-hide { display: none; }
+/* Decorations visible on all viewports — scale down on mobile */
+.deco-layer { position: absolute; inset: 0; pointer-events: none; overflow: hidden; z-index: 0; }
+.deco-layer > * { will-change: transform; }
+@media (max-width: 768px) {
+  .deco-layer { transform: scale(0.62); transform-origin: top left; width: 161%; height: 161%; opacity: 0.85; }
+}
+@media (max-width: 480px) {
+  .deco-layer { transform: scale(0.48); width: 208%; height: 208%; opacity: 0.8; }
 }
 
 /* ===== Hanging Nav Tiles ===== */
