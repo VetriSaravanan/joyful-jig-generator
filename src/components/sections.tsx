@@ -1,5 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { SectionDeco } from "./decorations";
+import { supabase, SUPABASE_CONFIGURED } from "@/lib/supabase";
+import { toast } from "sonner";
 
 /* ============= HERO ============= */
 function Counter({ target, suffix = "" }: { target: number; suffix?: string }) {
@@ -829,13 +831,40 @@ export function Announcements() {
 export function ReachUs() {
   const [form, setForm] = useState({ name: "", phone: "", email: "", age: "", msg: "" });
   const [sent, setSent] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
 
-  const submit = (e: React.FormEvent) => {
+  const submit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!form.name || !form.phone) return;
-    setSent(true);
-    setForm({ name: "", phone: "", email: "", age: "", msg: "" });
-    setTimeout(() => setSent(false), 4000);
+    if (!form.name.trim() || !form.phone.trim()) {
+      toast.error("Name and phone are required");
+      return;
+    }
+    if (!/^[0-9+\-\s()]{7,20}$/.test(form.phone.trim())) {
+      toast.error("Please enter a valid phone number");
+      return;
+    }
+    setSubmitting(true);
+    try {
+      if (SUPABASE_CONFIGURED) {
+        const { error } = await supabase.from("enquiries").insert({
+          name: form.name.trim().slice(0, 100),
+          phone: form.phone.trim().slice(0, 20),
+          email: form.email.trim().slice(0, 255) || null,
+          child_age: form.age || null,
+          message: form.msg.trim().slice(0, 1000) || null,
+        });
+        if (error) throw error;
+      }
+      setSent(true);
+      toast.success("Enquiry sent! We will contact you soon.");
+      setForm({ name: "", phone: "", email: "", age: "", msg: "" });
+      setTimeout(() => setSent(false), 4000);
+    } catch (err) {
+      const msg = err instanceof Error ? err.message : "Failed to send enquiry";
+      toast.error(msg);
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -947,8 +976,8 @@ export function ReachUs() {
               />
             </div>
             <div className="sm:col-span-2 text-center">
-              <button type="submit" className="btn-toy btn-toy-primary">
-                ✉️ Send Enquiry
+              <button type="submit" disabled={submitting} className="btn-toy btn-toy-primary disabled:opacity-60">
+                {submitting ? "Sending…" : "✉️ Send Enquiry"}
               </button>
               {sent && (
                 <div
