@@ -249,14 +249,17 @@
 }
 .toy-card:hover::after { left: 200%; }
 
-/* Decorations visible on all viewports — scale down on mobile */
+/* Decorations visible on all viewports — sit BEHIND content, never block taps */
 .deco-layer { position: absolute; inset: 0; pointer-events: none; overflow: hidden; z-index: 0; }
-.deco-layer > * { will-change: transform; }
+.deco-layer > * { will-change: transform; pointer-events: none; }
+/* On mobile keep decorations subtle so text stays the hero */
 @media (max-width: 768px) {
-  .deco-layer { transform: scale(0.62); transform-origin: top left; width: 161%; height: 161%; opacity: 0.85; }
+  .deco-layer { opacity: 0.55; }
+  .deco-layer > * { transform: scale(0.7); transform-origin: center; }
 }
 @media (max-width: 480px) {
-  .deco-layer { transform: scale(0.48); width: 208%; height: 208%; opacity: 0.8; }
+  .deco-layer { opacity: 0.4; }
+  .deco-layer > * { transform: scale(0.55); }
 }
 
 /* ===== Hanging Nav Tiles ===== */
