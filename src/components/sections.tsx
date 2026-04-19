@@ -1083,8 +1083,15 @@ export function Footer() {
             <ContactRow icon="🕘" text="Mon–Fri 9am–5pm | Sat 9am–1pm" />
           </div>
         </div>
-        <div className="pt-5 text-center text-[13px]" style={{ borderTop: "1px solid oklch(1 0 0 / .12)", color: "oklch(1 0 0 / .6)" }}>
-          © 2025 <b style={{ color: "#fff" }}>Nellaiappar Kanthimathi Payitragam</b>. All rights reserved. Made with ❤️ for little learners in Tirunelveli.
+        <div className="pt-5 text-center text-[13px] flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-5" style={{ borderTop: "1px solid oklch(1 0 0 / .12)", color: "oklch(1 0 0 / .6)" }}>
+          <span>© 2025 <b style={{ color: "#fff" }}>Nellaiappar Kanthimathi Payitragam</b>. Made with ❤️ in Tirunelveli.</span>
+          <a
+            href="/admin"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[12px] font-bold transition-transform hover:-translate-y-0.5"
+            style={{ background: "var(--secondary)", color: "var(--navy)", fontFamily: "var(--font-play)" }}
+          >
+            🔐 Admin Login
+          </a>
         </div>
       </div>
     </footer>

@@ -133,6 +133,12 @@
   section { scroll-margin-top: 120px; }
 }
 
+/* Mobile-first padding tune-down for all content sections */
+@media (max-width: 768px) {
+  section.py-24 { padding-top: 56px !important; padding-bottom: 56px !important; }
+  .section-sub { margin-bottom: 28px !important; font-size: 14.5px !important; }
+}
+
 /* ===== Funky Keyframes ===== */
 @keyframes float        {0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-22px) rotate(3deg)}}
 @keyframes float-r      {0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-18px) rotate(-3deg)}}
