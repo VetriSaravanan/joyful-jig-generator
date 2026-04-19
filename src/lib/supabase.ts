@@ -22,8 +22,7 @@ export const supabase = createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY, {
   },
 });
 
-export const SUPABASE_CONFIGURED =
-  !SUPABASE_URL.includes("YOUR-PROJECT-REF");
+export const SUPABASE_CONFIGURED = true;
 
 export const BUCKETS = {
   logos: "logos",
