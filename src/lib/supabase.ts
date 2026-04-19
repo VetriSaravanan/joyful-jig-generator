@@ -11,7 +11,7 @@ import { createClient } from "@supabase/supabase-js";
  * to every visitor in the browser bundle. The secret key you shared in
  * chat should be ROTATED in your Supabase dashboard immediately.
  */
-const SUPABASE_URL = "https://YOUR-PROJECT-REF.supabase.co"; // ← REPLACE THIS
+const SUPABASE_URL = "https://vccmipedghdpynggsnma.supabase.co";
 const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_gEyZpzyR2Pi2XF_UTiMzog_04IcJaAC";
 
 export const supabase = createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY, {
