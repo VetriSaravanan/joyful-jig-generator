@@ -43,12 +43,13 @@ function GalleryPage() {
     try {
       for (const f of files) {
         const url = await uploadFile(BUCKETS.gallery, f);
-        await supabase.from("gallery_images").insert({
+        const { error } = await supabase.from("gallery_images").insert({
           image_url: url, caption: "", category_id: catId, order_index: imgs.length,
         });
+        if (error) throw error;
       }
       toast.success(`Uploaded ${files.length} image(s)`);
-      reload();
+      await reload();
     } catch (err) {
       toast.error(err instanceof Error ? err.message : "Upload failed");
     } finally {
