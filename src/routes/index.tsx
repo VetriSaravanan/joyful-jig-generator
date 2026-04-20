@@ -1,9 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Navbar } from "@/components/navbar";
-import { Ticker } from "@/components/ticker";
-import {
-  Hero, Why, About, Programs, Playground, Gallery, Blogs, Announcements, ReachUs, Footer, FloatingButtons,
-} from "@/components/sections";
+import { LiveHomePage } from "@/components/live-homepage";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -25,21 +21,5 @@ export const Route = createFileRoute("/")({
 });
 
 function HomePage() {
-  return (
-    <main>
-      <Navbar />
-      <Ticker />
-      <Hero />
-      <Why />
-      <About />
-      <Programs />
-      <Playground />
-      <Gallery />
-      <Blogs />
-      <Announcements />
-      <ReachUs />
-      <Footer />
-      <FloatingButtons />
-    </main>
-  );
+  return <LiveHomePage />;
 }
