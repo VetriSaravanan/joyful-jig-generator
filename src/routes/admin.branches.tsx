@@ -88,14 +88,12 @@ function BranchesPage() {
         </>}
       >
         {editing && (
-          <FormBlock onSubmit={save}>
-            <form id="branch-form" onSubmit={save} className="space-y-4">
-              <Field label="Branch Name" value={editing.branch_name ?? ""} onChange={(v) => setEditing({ ...editing, branch_name: v })} required />
-              <Field label="Address" value={editing.address ?? ""} onChange={(v) => setEditing({ ...editing, address: v })} textarea />
-              <Field label="Phone" value={editing.phone ?? ""} onChange={(v) => setEditing({ ...editing, phone: v })} />
-              <Field label="Google Maps Embed URL" value={editing.map_embed_url ?? ""} onChange={(v) => setEditing({ ...editing, map_embed_url: v })} placeholder="https://www.google.com/maps/embed?..." />
-            </form>
-          </FormBlock>
+          <form id="branch-form" onSubmit={save} className="space-y-4">
+            <Field label="Branch Name" value={editing.branch_name ?? ""} onChange={(v) => setEditing({ ...editing, branch_name: v })} required />
+            <Field label="Address" value={editing.address ?? ""} onChange={(v) => setEditing({ ...editing, address: v })} textarea />
+            <Field label="Phone" value={editing.phone ?? ""} onChange={(v) => setEditing({ ...editing, phone: v })} />
+            <Field label="Google Maps Embed URL" value={editing.map_embed_url ?? ""} onChange={(v) => setEditing({ ...editing, map_embed_url: v })} placeholder="https://www.google.com/maps/embed?..." />
+          </form>
         )}
       </Modal>
 

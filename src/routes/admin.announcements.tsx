@@ -122,32 +122,30 @@ function AnnouncementsPage() {
         </>}
       >
         {editing && (
-          <FormBlock onSubmit={save}>
-            <form id="ann-form" onSubmit={save} className="space-y-4">
-              <Field label="Title" value={editing.title ?? ""} onChange={(v) => setEditing({ ...editing, title: v })} required />
-              <Field label="Description" value={editing.description ?? ""} onChange={(v) => setEditing({ ...editing, description: v })} textarea />
-              <div className="grid grid-cols-2 gap-4">
-                <Field label="Date" type="date" value={editing.announcement_date ?? ""} onChange={(v) => setEditing({ ...editing, announcement_date: v })} />
-                <label className="block">
-                  <span className="block text-sm font-medium mb-1.5">Badge Color</span>
-                  <input
-                    type="color"
-                    value={editing.badge_color ?? "#e63946"}
-                    onChange={(e) => setEditing({ ...editing, badge_color: e.target.value })}
-                    className="w-full h-10 rounded-lg border bg-background"
-                  />
-                </label>
-              </div>
-              <label className="flex items-center gap-2">
+          <form id="ann-form" onSubmit={save} className="space-y-4">
+            <Field label="Title" value={editing.title ?? ""} onChange={(v) => setEditing({ ...editing, title: v })} required />
+            <Field label="Description" value={editing.description ?? ""} onChange={(v) => setEditing({ ...editing, description: v })} textarea />
+            <div className="grid grid-cols-2 gap-4">
+              <Field label="Date" type="date" value={editing.announcement_date ?? ""} onChange={(v) => setEditing({ ...editing, announcement_date: v })} />
+              <label className="block">
+                <span className="block text-sm font-medium mb-1.5">Badge Color</span>
                 <input
-                  type="checkbox"
-                  checked={editing.is_pinned ?? false}
-                  onChange={(e) => setEditing({ ...editing, is_pinned: e.target.checked })}
+                  type="color"
+                  value={editing.badge_color ?? "#e63946"}
+                  onChange={(e) => setEditing({ ...editing, badge_color: e.target.value })}
+                  className="w-full h-10 rounded-lg border bg-background"
                 />
-                <span className="text-sm">📌 Pin this announcement</span>
               </label>
-            </form>
-          </FormBlock>
+            </div>
+            <label className="flex items-center gap-2">
+              <input
+                type="checkbox"
+                checked={editing.is_pinned ?? false}
+                onChange={(e) => setEditing({ ...editing, is_pinned: e.target.checked })}
+              />
+              <span className="text-sm">📌 Pin this announcement</span>
+            </label>
+          </form>
         )}
       </Modal>
 

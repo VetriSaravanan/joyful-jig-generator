@@ -137,47 +137,45 @@ function BlogsPage() {
         </>}
       >
         {editing && (
-          <FormBlock onSubmit={save}>
-            <form id="blog-form" onSubmit={save} className="space-y-4">
-              <Field label="Title" value={editing.title ?? ""} onChange={(v) => setEditing({ ...editing, title: v, slug: editing.id ? editing.slug : slugify(v) })} required />
-              <Field label="Slug (URL)" value={editing.slug ?? ""} onChange={(v) => setEditing({ ...editing, slug: slugify(v) })} />
-              <Field label="Author" value={editing.author ?? ""} onChange={(v) => setEditing({ ...editing, author: v })} />
-              <Field label="Excerpt (short summary)" value={editing.excerpt ?? ""} onChange={(v) => setEditing({ ...editing, excerpt: v })} textarea rows={2} />
-              <div>
-                <span className="block text-sm font-medium mb-1.5">Cover Image</span>
-                <ImageUpload value={editing.cover_url} onChange={(u) => setEditing({ ...editing, cover_url: u })} bucket={BUCKETS.blogs} />
-              </div>
-              <div>
-                <span className="block text-sm font-medium mb-1.5">Content</span>
-                <ReactQuill
-                  theme="snow"
-                  value={editing.content ?? ""}
-                  onChange={(v) => setEditing({ ...editing, content: v })}
-                  modules={{
-                    toolbar: [
-                      [{ header: [1, 2, 3, false] }],
-                      ["bold", "italic", "underline", "strike"],
-                      [{ list: "ordered" }, { list: "bullet" }],
-                      ["link", "blockquote"],
-                      ["clean"],
-                    ],
-                  }}
-                  className="bg-background"
-                />
-              </div>
-              <label className="block">
-                <span className="block text-sm font-medium mb-1.5">Status</span>
-                <select
-                  value={editing.status ?? "draft"}
-                  onChange={(e) => setEditing({ ...editing, status: e.target.value as "draft" | "published" })}
-                  className="w-full px-3 py-2 rounded-lg border bg-background text-sm"
-                >
-                  <option value="draft">Draft</option>
-                  <option value="published">Published</option>
-                </select>
-              </label>
-            </form>
-          </FormBlock>
+          <form id="blog-form" onSubmit={save} className="space-y-4">
+            <Field label="Title" value={editing.title ?? ""} onChange={(v) => setEditing({ ...editing, title: v, slug: editing.id ? editing.slug : slugify(v) })} required />
+            <Field label="Slug (URL)" value={editing.slug ?? ""} onChange={(v) => setEditing({ ...editing, slug: slugify(v) })} />
+            <Field label="Author" value={editing.author ?? ""} onChange={(v) => setEditing({ ...editing, author: v })} />
+            <Field label="Excerpt (short summary)" value={editing.excerpt ?? ""} onChange={(v) => setEditing({ ...editing, excerpt: v })} textarea rows={2} />
+            <div>
+              <span className="block text-sm font-medium mb-1.5">Cover Image</span>
+              <ImageUpload value={editing.cover_url} onChange={(u) => setEditing({ ...editing, cover_url: u })} bucket={BUCKETS.blogs} />
+            </div>
+            <div>
+              <span className="block text-sm font-medium mb-1.5">Content</span>
+              <ReactQuill
+                theme="snow"
+                value={editing.content ?? ""}
+                onChange={(v) => setEditing({ ...editing, content: v })}
+                modules={{
+                  toolbar: [
+                    [{ header: [1, 2, 3, false] }],
+                    ["bold", "italic", "underline", "strike"],
+                    [{ list: "ordered" }, { list: "bullet" }],
+                    ["link", "blockquote"],
+                    ["clean"],
+                  ],
+                }}
+                className="bg-background"
+              />
+            </div>
+            <label className="block">
+              <span className="block text-sm font-medium mb-1.5">Status</span>
+              <select
+                value={editing.status ?? "draft"}
+                onChange={(e) => setEditing({ ...editing, status: e.target.value as "draft" | "published" })}
+                className="w-full px-3 py-2 rounded-lg border bg-background text-sm"
+              >
+                <option value="draft">Draft</option>
+                <option value="published">Published</option>
+              </select>
+            </label>
+          </form>
         )}
       </Modal>
 

@@ -93,16 +93,14 @@ function TeamPage() {
         </>}
       >
         {editing && (
-          <FormBlock onSubmit={save} className="">
-            <form id="team-form" onSubmit={save} className="space-y-4">
-              <Field label="Name" value={editing.name ?? ""} onChange={(v) => setEditing({ ...editing, name: v })} required />
-              <Field label="Role" value={editing.role ?? ""} onChange={(v) => setEditing({ ...editing, role: v })} />
-              <div>
-                <span className="block text-sm font-medium mb-1.5">Photo</span>
-                <ImageUpload value={editing.photo_url} onChange={(u) => setEditing({ ...editing, photo_url: u })} bucket={BUCKETS.team} />
-              </div>
-            </form>
-          </FormBlock>
+          <form id="team-form" onSubmit={save} className="space-y-4">
+            <Field label="Name" value={editing.name ?? ""} onChange={(v) => setEditing({ ...editing, name: v })} required />
+            <Field label="Role" value={editing.role ?? ""} onChange={(v) => setEditing({ ...editing, role: v })} />
+            <div>
+              <span className="block text-sm font-medium mb-1.5">Photo</span>
+              <ImageUpload value={editing.photo_url} onChange={(u) => setEditing({ ...editing, photo_url: u })} bucket={BUCKETS.team} />
+            </div>
+          </form>
         )}
       </Modal>
 
