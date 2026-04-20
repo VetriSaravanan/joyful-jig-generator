@@ -1,9 +1,9 @@
-import { useEffect, useState, type ReactNode } from "react";
+import { useState, type ReactNode } from "react";
 import { Link, Outlet, createFileRoute, useLocation, useNavigate } from "@tanstack/react-router";
 import { supabase, SUPABASE_CONFIGURED } from "@/lib/supabase";
-import type { Session } from "@supabase/supabase-js";
 import { toast } from "sonner";
 import { SetupBanner } from "@/components/setup-banner";
+import { useAuthReady } from "@/lib/auth";
 import {
   LayoutDashboard, Settings, Home, Info, Image as ImageIcon, FileText, Megaphone,
   Inbox, MapPin, Users, BookOpen, LogOut, Menu, X, AlertTriangle,
@@ -28,29 +28,16 @@ const NAV: Array<{ to: string; label: string; icon: typeof LayoutDashboard; exac
 ] as const;
 
 function AdminLayout() {
-  const [session, setSession] = useState<Session | null>(null);
-  const [loading, setLoading] = useState(true);
   const [mobileOpen, setMobileOpen] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
-
-  useEffect(() => {
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((_e, s) => {
-      setSession(s);
-      setLoading(false);
-    });
-    supabase.auth.getSession().then(({ data }) => {
-      setSession(data.session);
-      setLoading(false);
-    });
-    return () => subscription.unsubscribe();
-  }, []);
+  const { isReady, session } = useAuthReady();
 
   if (!SUPABASE_CONFIGURED) {
     return <SupabaseNotConfigured />;
   }
 
-  if (loading) {
+  if (!isReady) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-background">
         <div className="text-muted-foreground">Loading…</div>
