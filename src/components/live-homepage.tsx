@@ -2,6 +2,8 @@ import { useMemo, useState } from "react";
 import { toast } from "sonner";
 import { supabase } from "@/lib/supabase";
 import { SiteContentProvider, useSiteContent } from "@/components/site-content";
+import { TopBar } from "@/components/navigation/TopBar";
+import { BottomNav } from "@/components/navigation/BottomNav";
 
 function HomeContentView() {
   const { loading, settings, home, about, sections, galleryCategories, galleryImages, blogs, announcements, branches } = useSiteContent();
