@@ -2,6 +2,8 @@ import { useMemo, useState } from "react";
 import { toast } from "sonner";
 import { supabase } from "@/lib/supabase";
 import { SiteContentProvider, useSiteContent } from "@/components/site-content";
+import { TopBar } from "@/components/navigation/TopBar";
+import { BottomNav } from "@/components/navigation/BottomNav";
 
 function HomeContentView() {
   const { loading, settings, home, about, sections, galleryCategories, galleryImages, blogs, announcements, branches } = useSiteContent();
@@ -35,26 +37,8 @@ function HomeContentView() {
   if (loading) return <div className="min-h-screen flex items-center justify-center text-muted-foreground">Loading…</div>;
 
   return (
-    <main className="bg-background text-foreground">
-      <header className="sticky top-0 z-50 border-b bg-background/95 backdrop-blur">
-        <div className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-3 sm:px-6">
-          <a href="#home" className="flex min-w-0 items-center gap-3">
-            {settings?.logo_url ? (
-              <img src={settings.logo_url} alt={settings.school_name || "School logo"} className="h-12 w-12 rounded-full border object-cover" />
-            ) : (
-              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary text-primary-foreground font-bold">P</div>
-            )}
-            <div className="min-w-0">
-              <div className="truncate font-semibold">{settings?.school_name || "Payitragam Preschool"}</div>
-              <div className="truncate text-xs text-muted-foreground">{settings?.tagline || "E for Education, P for Payitragam"}</div>
-            </div>
-          </a>
-          <div className="flex items-center gap-2">
-            <a href="#contact" className="rounded-full bg-primary px-4 py-2 text-sm font-medium text-primary-foreground">{home?.cta1_text || "Enroll Now"}</a>
-            <a href="/admin" className="rounded-full border px-4 py-2 text-sm font-medium">Admin</a>
-          </div>
-        </div>
-      </header>
+    <main className="bg-background text-foreground pb-bottom-nav" style={{ paddingTop: 92 }}>
+      <TopBar />
 
       <section id="home" className="border-b bg-muted/40">
         <div className="mx-auto grid max-w-6xl gap-8 px-4 py-8 sm:px-6 lg:grid-cols-2 lg:items-center lg:py-14">
@@ -228,6 +212,8 @@ function HomeContentView() {
           </div>
         </div>
       </footer>
+
+      <BottomNav />
     </main>
   );
 }
